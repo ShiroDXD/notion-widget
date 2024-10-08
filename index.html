@@ -9,15 +9,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             margin: 0;
             background-color: transparent; /* Transparent background */
             font-family: 'Helvetica', Arial, sans-serif;
+            color: white;
         }
         .countdown {
             display: flex;
             gap: 20px;
-            color: white;
+            margin-top: 20px;
         }
         .countdown-item {
             text-align: center;
@@ -30,9 +32,18 @@
             font-size: 1rem;
             letter-spacing: 0.1em;
         }
+        .date-picker {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
+    <div class="date-picker">
+        <label for="event-date">Select Event Date & Time: </label>
+        <input type="datetime-local" id="event-date">
+        <button id="start-timer">Start Countdown</button>
+    </div>
+
     <div class="countdown">
         <div class="countdown-item">
             <div class="time" id="days">00</div>
@@ -53,6 +64,8 @@
     </div>
 
     <script>
+        let countdownInterval;
+
         function countdownToEvent(eventDate) {
             function updateCountdown() {
                 const now = new Date().getTime();
@@ -74,13 +87,20 @@
                 }
             }
 
-            const countdownInterval = setInterval(updateCountdown, 1000);
+            clearInterval(countdownInterval);  // Clear any previous interval
+            countdownInterval = setInterval(updateCountdown, 1000);
             updateCountdown();  // Initial call to set the time immediately
         }
 
-        // Event date: December 18, 2024, 10:00 PM SGT (Singapore Time)
-        const eventDate = new Date('2024-12-18T22:00:00+08:00').getTime();
-        countdownToEvent(eventDate);
+        document.getElementById('start-timer').addEventListener('click', () => {
+            const eventDateInput = document.getElementById('event-date').value;
+            if (eventDateInput) {
+                const eventDate = new Date(eventDateInput).getTime();
+                countdownToEvent(eventDate);
+            } else {
+                alert('Please select a valid date and time.');
+            }
+        });
     </script>
 </body>
 </html>
