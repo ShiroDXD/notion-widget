@@ -66,6 +66,25 @@
     <script>
         let countdownInterval;
 
+        // Function to fetch the event date from the backend
+        async function fetchEventDateFromBackend() {
+            try {
+                const response = await fetch('http://localhost:3000/get-event-date'); // Replace with your backend URL
+                const data = await response.json();
+
+                if (data.eventDate) {
+                    return new Date(data.eventDate).getTime();
+                } else {
+                    throw new Error('Event date not found in the response');
+                }
+            } catch (error) {
+                console.error('Error fetching event date:', error);
+                alert('Failed to fetch the event date. Please try again.');
+                return null;
+            }
+        }
+
+        // Countdown logic
         function countdownToEvent(eventDate) {
             function updateCountdown() {
                 const now = new Date().getTime();

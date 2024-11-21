@@ -1,0 +1,25 @@
+{
+  "name": "notion-widget",
+  "version": "1.0.0",
+  "description": "notion widget",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShiroDXD/notion-widget.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShiroDXD/notion-widget/issues"
+  },
+  "homepage": "https://github.com/ShiroDXD/notion-widget#readme",
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  }
+}
