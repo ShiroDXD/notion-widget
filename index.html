@@ -72,6 +72,8 @@
                 const response = await fetch('http://localhost:3000/get-event-date'); // Replace with your backend URL
                 const data = await response.json();
 
+                console.log('data', data);
+
                 if (data.eventDate) {
                     return new Date(data.eventDate).getTime();
                 } else {
